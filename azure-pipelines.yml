@@ -2,14 +2,14 @@ trigger:
 - '*'
 
 pool:
-  vmImage: 'ubuntu-18.04'
+  name: 'MyAgentPool'
   demands:
   - npm
 
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '3.1.300'
+  dotnetSdkVersion: '3.1.100'
 
 steps:
 - task: UseDotNet@2
@@ -61,7 +61,6 @@ steps:
     projects: '**/*.Tests.csproj'
 
 - task: DotNetCoreCLI@2
-
   displayName: 'Create code coverage report'
   inputs:
     command: custom
@@ -75,7 +74,6 @@ steps:
     summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
 
 - task: DotNetCoreCLI@2
-
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
     command: 'publish'
