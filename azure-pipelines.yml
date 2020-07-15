@@ -54,7 +54,6 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
-
 displayName: 'Install .NET Core tools from local manifest'
   inputs:
     command: custom
@@ -62,7 +61,6 @@ displayName: 'Install .NET Core tools from local manifest'
     arguments: 'restore'
 
 - task: DotNetCoreCLI@2
-
   displayName: 'Publish the project - $(buildConfiguration)'
   inputs:
     command: 'publish'
